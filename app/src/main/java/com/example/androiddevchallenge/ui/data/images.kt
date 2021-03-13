@@ -27,7 +27,7 @@ enum class ImageLinks(val link: String, val value: String) {
     Stretching("https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?cs=srgb&dl=pexels-cliff-booth-4056723.jpg&fm=jpg", "Stretching"),
     Tabata("https://images.pexels.com/photos/4662438/pexels-photo-4662438.jpeg?cs=srgb&dl=pexels-elly-fairytale-4662438.jpg&fm=jpg", "Tabata"),
     HIIT("https://images.pexels.com/photos/999309/pexels-photo-999309.jpeg?cs=srgb&dl=pexels-the-lazy-artist-gallery-999309.jpg&fm=jpg", "HIIT"),
-    Pre_Natal_Yoga("https://images.pexels.com/photos/396133/pexels-photo-396133.jpeg?cs=srgb&dl=pexels-freestocksorg-396133.jpg&fm=jpg", "Pre natal yoga"),
+    Pre_Natal_Yoga("https://images.pexels.com/photos/396133/pexels-photo-396133.jpeg?cs=srgb&dl=pexels-freestocksorg-396133.jpg&fm=jpg", "Pre-natal yoga"),
     Meditate("https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?cs=srgb&dl=pexels-elly-fairytale-3822622.jpg&fm=jpg", "Meditate"),
     With_Kids("https://images.pexels.com/photos/3094230/pexels-photo-3094230.jpeg?cs=srgb&dl=pexels-valeria-ushakova-3094230.jpg&fm=jpg", "With kids"),
     Aromatherapy("https://images.pexels.com/photos/4498318/pexels-photo-4498318.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4498318.jpg&fm=jpg", "Aromatherapy"),

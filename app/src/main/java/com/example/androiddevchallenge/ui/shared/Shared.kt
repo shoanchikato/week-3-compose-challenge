@@ -38,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -46,6 +47,7 @@ fun BasicTextField(
     modifier: Modifier = Modifier,
     name: String = "Email address",
     leadingIcon: @Composable (() -> Unit)? = null,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     colors: TextFieldColors = TextFieldDefaults.textFieldColors(
         backgroundColor = MaterialTheme.colors.surface,
         textColor = MaterialTheme.colors.primary,
@@ -69,6 +71,7 @@ fun BasicTextField(
             colors = colors,
             shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp),
             textStyle = MaterialTheme.typography.body1,
+            visualTransformation = visualTransformation,
         )
     }
 }

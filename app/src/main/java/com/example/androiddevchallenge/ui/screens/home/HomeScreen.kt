@@ -20,6 +20,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,6 +43,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -93,7 +95,6 @@ fun HomeScreen(
                 Column(
                     modifier = Modifier
                         .padding(top = 56.dp)
-                        .padding(horizontal = 16.dp)
                 ) {
                     SearchTextField()
                     FavoriteImageRow()
@@ -110,11 +111,13 @@ fun AlignMindRow() {
     FavouriteText(
         "ALIGN YOUR MIND"
     )
-    val items = ImageLinks.values().toList().subList(fromIndex = 12, toIndex = 17)
+    val items = ImageLinks.values().toList().subList(fromIndex = 12, toIndex = 18)
     LazyRow {
         items.map {
             item {
+                if (items.first() == it) Spacer(modifier = Modifier.width(8.dp))
                 CircularImage(link = it.link, value = it.value)
+                if (items.last() == it) Spacer(modifier = Modifier.width(8.dp))
             }
         }
     }
@@ -125,11 +128,15 @@ fun AlignBodyRow() {
     FavouriteText(
         "ALIGN YOUR BODY"
     )
-    val items = ImageLinks.values().toList().subList(fromIndex = 6, toIndex = 11)
-    LazyRow {
-        items.map {
-            item {
-                CircularImage(link = it.link, value = it.value)
+    val items = ImageLinks.values().toList().subList(fromIndex = 6, toIndex = 12)
+    Column {
+        LazyRow {
+            items.map {
+                item {
+                    if (items.first() == it) Spacer(modifier = Modifier.width(8.dp))
+                    CircularImage(link = it.link, value = it.value)
+                    if (items.last() == it) Spacer(modifier = Modifier.width(8.dp))
+                }
             }
         }
     }
@@ -140,13 +147,16 @@ fun FavoriteImageRow() {
     FavouriteText(
         "FAVORITE COLLECTIONS"
     )
-    val collection = ImageLinks.values().take(6)
+    val collection = ImageLinks.values()
+        .take(6)
+        .withIndex()
+        .groupBy { it.index / 2 }
+
     LazyRow {
         collection
-            .withIndex()
-            .groupBy { it.index / 2 }
             .map { pair ->
                 item {
+                    if (collection.entries.first() == pair) Spacer(modifier = Modifier.width(8.dp))
                     Column {
                         FavouritePill(
                             link = pair.value[0].value.link,
@@ -157,6 +167,7 @@ fun FavoriteImageRow() {
                             value = pair.value[1].value.value
                         )
                     }
+                    if (collection.entries.last() == pair) Spacer(modifier = Modifier.width(8.dp))
                 }
             }
     }
@@ -254,10 +265,14 @@ fun FavouritePill(
 fun FavouriteText(
     label: String = "FAVORITE COLLECTIONS"
 ) {
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 40.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
+        verticalArrangement = Arrangement.Bottom,
+    ) {
         val color: Color = if (isSystemInDarkTheme()) Taupe_100 else Taupe_800
         Text(
-            modifier = Modifier.paddingFromBaseline(top = 40.dp, bottom = 8.dp),
             text = label,
             style = MaterialTheme.typography.h2,
             textAlign = TextAlign.Start,
@@ -271,7 +286,8 @@ fun SearchTextField(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .padding(16.dp),
     ) {
         val color: Color = if (isSystemInDarkTheme()) White else Black_800
         BasicTextField(
@@ -331,6 +347,7 @@ fun FloatingActionButton() {
     Column(
         modifier = Modifier
             .size(42.dp)
+            .shadow(elevation = 4.dp, shape = CircleShape)
             .clip(shape = CircleShape)
             .background(MaterialTheme.colors.primary),
         verticalArrangement = Arrangement.Center,

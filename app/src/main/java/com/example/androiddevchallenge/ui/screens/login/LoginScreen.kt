@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -89,6 +90,7 @@ fun LoginScreen(
             )
             BasicTextField(
                 name = "Password",
+                visualTransformation = PasswordVisualTransformation()
             )
             BasicButton(
                 name = "LOG IN",
