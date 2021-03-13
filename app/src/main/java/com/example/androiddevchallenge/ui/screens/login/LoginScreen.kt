@@ -31,7 +31,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -45,9 +44,7 @@ import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.navigation.Screen
 import com.example.androiddevchallenge.ui.shared.BasicButton
 import com.example.androiddevchallenge.ui.shared.BasicTextField
-import com.example.androiddevchallenge.ui.theme.Gray_800
 import com.example.androiddevchallenge.ui.theme.MySootheTheme
-import com.example.androiddevchallenge.ui.theme.White
 
 @Composable
 fun LoginScreen(
@@ -87,7 +84,6 @@ fun LoginScreen(
                     textAlign = TextAlign.Center,
                 )
             }
-            val color: Color = if (isSystemInDarkTheme()) Gray_800 else White
             BasicTextField(
                 name = "Email address",
             )

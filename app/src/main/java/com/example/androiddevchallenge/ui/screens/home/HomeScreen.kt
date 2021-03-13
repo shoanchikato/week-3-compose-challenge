@@ -299,8 +299,6 @@ fun BottomBar(navController: NavController) {
         backgroundColor = MaterialTheme.colors.background,
     ) {
         val selectedColor = if (isSystemInDarkTheme()) Taupe_100 else Taupe_800
-        val unselectedColor =
-            if (isSystemInDarkTheme()) Taupe_100.copy(alpha = .2f) else Taupe_800.copy(alpha = .2f)
         screens.map { screen ->
             BottomNavigationItem(
                 icon = {
