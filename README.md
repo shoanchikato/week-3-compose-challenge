@@ -1,4 +1,4 @@
-# My Soothie App
+# My Soothe App
 
 <!--- Replace <OWNER> with your Github Username and <REPOSITORY> with the name of your repository. -->
 <!--- You can find both of these in the url bar when you open your repository in github. -->

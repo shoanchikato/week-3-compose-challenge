@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -115,9 +116,9 @@ fun AlignMindRow() {
     LazyRow {
         items.map {
             item {
-                if (items.first() == it) Spacer(modifier = Modifier.width(8.dp))
+                if (items.first() == it) Spacer(modifier = Modifier.width(12.dp))
                 CircularImage(link = it.link, value = it.value)
-                if (items.last() == it) Spacer(modifier = Modifier.width(8.dp))
+                if (items.last() == it) Spacer(modifier = Modifier.width(12.dp))
             }
         }
     }
@@ -133,9 +134,9 @@ fun AlignBodyRow() {
         LazyRow {
             items.map {
                 item {
-                    if (items.first() == it) Spacer(modifier = Modifier.width(8.dp))
+                    if (items.first() == it) Spacer(modifier = Modifier.width(12.dp))
                     CircularImage(link = it.link, value = it.value)
-                    if (items.last() == it) Spacer(modifier = Modifier.width(8.dp))
+                    if (items.last() == it) Spacer(modifier = Modifier.width(12.dp))
                 }
             }
         }
@@ -180,7 +181,7 @@ fun CircularImage(
 ) {
     Column(
         modifier = Modifier
-            .padding(8.dp),
+            .padding(horizontal = 4.dp, vertical = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CoilImage(
@@ -219,19 +220,20 @@ fun FavouritePill(
             modifier = Modifier
                 .width(192.dp)
                 .height(56.dp)
-                .padding(8.dp)
-                .clip(shape = MaterialTheme.shapes.small),
+                .padding(horizontal = 4.dp, vertical = 4.dp)
+                .clip(shape = MaterialTheme.shapes.small)
         ) {
             Column(
                 modifier = Modifier
-                    .weight(42f / 192)
+                    .weight(56f / 192)
+                    .aspectRatio(1f)
                     .fillMaxHeight(),
             ) {
                 CoilImage(
                     data = link,
                     contentDescription = value,
                     modifier = Modifier
-                        .size(42.dp),
+                        .size(56.dp),
                     contentScale = ContentScale.Crop
                 ) {
                     Column(
@@ -320,7 +322,7 @@ fun BottomBar(navController: NavController) {
                 icon = {
                     Icon(
                         painter = painterResource(screen.icon!!),
-                        contentDescription = screen.route,
+                        contentDescription = screen.name,
                     )
                 },
                 label = { Text(screen.name) },
@@ -329,7 +331,7 @@ fun BottomBar(navController: NavController) {
                 unselectedContentColor = selectedColor.copy(alpha = .5f),
                 onClick = {
                     // This is the equivalent to popUpTo the start destination
-                    navController.popBackStack(navController.graph.startDestination, false)
+                    // navController.popBackStack(navController.graph.startDestination, false)
 
                     // This if check gives us a "singleTop" behavior where we do not create a
                     // second instance of the composable if we are already on that destination
