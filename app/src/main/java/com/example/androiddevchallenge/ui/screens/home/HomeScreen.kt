@@ -31,7 +31,9 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.FabPosition
@@ -67,15 +69,15 @@ import com.example.androiddevchallenge.ui.theme.Taupe_100
 import com.example.androiddevchallenge.ui.theme.Taupe_800
 import com.example.androiddevchallenge.ui.theme.White
 import dev.chrisbanes.accompanist.coil.CoilImage
-import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
 
 @Composable
 fun HomeScreen(
     navController: NavController,
 ) {
     Scaffold(
+        modifier = Modifier
+            .navigationBarsPadding(),
         bottomBar = {
             BottomBar(navController = navController)
         },
@@ -86,22 +88,20 @@ fun HomeScreen(
         floatingActionButtonPosition = FabPosition.Center,
         drawerElevation = 4.dp,
     ) { innerPadding ->
-        ProvideWindowInsets {
-            BodyContent(
-                Modifier
-                    .statusBarsPadding()
-                    .navigationBarsPadding()
-                    .padding(innerPadding)
+        BodyContent(
+            Modifier
+                .padding(innerPadding)
+        ) {
+            val scrollState = rememberScrollState()
+            Column(
+                modifier = Modifier
+                    .padding(top = 56.dp)
+                    .verticalScroll(scrollState)
             ) {
-                Column(
-                    modifier = Modifier
-                        .padding(top = 56.dp)
-                ) {
-                    SearchTextField()
-                    FavoriteImageRow()
-                    AlignBodyRow()
-                    AlignMindRow()
-                }
+                SearchTextField()
+                FavoriteImageRow()
+                AlignBodyRow()
+                AlignMindRow()
             }
         }
     }

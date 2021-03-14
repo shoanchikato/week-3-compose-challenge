@@ -23,19 +23,27 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.ui.navigation.NavGraph
 import com.example.androiddevchallenge.ui.shared.BodyContent
 import com.example.androiddevchallenge.ui.theme.MySootheTheme
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        setOnApplyWindowInsetsListener(window.decorView.rootView) { _, insets ->
+            insets
+        }
         setContent {
-            MySootheTheme {
-                MySootheApp()
+            ProvideWindowInsets {
+                MySootheTheme {
+                    MySootheApp()
+                }
             }
         }
     }
